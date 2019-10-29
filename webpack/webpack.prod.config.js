@@ -1,20 +1,24 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const commonConfig = require("./webpack.base.config");
+const merge = require("webpack-merge");
 
-module.exports = {
+const proConfig = {
   // 入口文件
-  entry: "./src/index.js",
+  devtool: "source-map",
+  mode: "production",
+  entry: {
+    app: [path.join(__dirname, "../src/index.js")]
+  },
   output: {
     filename: "bundle.[hash].js",
-    path: path.join(__dirname, "/dist")
+    path: path.join(__dirname, "../dist")
   },
   module: {
     // 配置相应的规则
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.js[x]?$/,
@@ -30,19 +34,13 @@ module.exports = {
         ]
       }
     ]
-  },
-  // 配置相应的插件
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    }),
-    new CleanWebpackPlugin()
-  ],
-  mode: "development",
-  devtool: "inline-source-map",
-  // 配置服务端目录和端口
-  devServer: {
-    contentBase: "./dist",
-    port: 3000
   }
 };
+module.exports = merge({
+  customizeArray(a, b, key) {
+    if (key === "entry.app") {
+      return b;
+    }
+    return undefined;
+  }
+})(commonConfig, proConfig);
