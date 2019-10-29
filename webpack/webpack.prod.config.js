@@ -1,24 +1,21 @@
 const path = require("path");
 const commonConfig = require("./webpack.base.config");
 const merge = require("webpack-merge");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cssnano = require("cssnano");
 
 const proConfig = {
   // 入口文件
-  devtool: "source-map",
+  devtool: "cheap-module-source-map",
   mode: "production",
-  entry: {
-    app: [path.join(__dirname, "../src/index.js")]
-  },
-  output: {
-    filename: "bundle.[hash].js",
-    path: path.join(__dirname, "../dist")
-  },
   module: {
     // 配置相应的规则
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.js[x]?$/,
@@ -28,13 +25,31 @@ const proConfig = {
       {
         test: /\.less$/,
         use: [
-          "style-loader",
-          { loader: "css-loader", options: { importLoaders: 1 } },
-          "less-loader"
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          { loader: "less-loader", options: { javascriptEnabled: true } }
         ]
       }
     ]
-  }
+  },
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})]
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[contenthash].css"
+    }),
+
+    new OptimizeCSSAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: cssnano,
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    })
+  ]
 };
 module.exports = merge({
   customizeArray(a, b, key) {

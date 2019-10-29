@@ -3,15 +3,25 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const commonConfig = {
   // 入口文件
   entry: {
-    app: [path.join(__dirname, "../src/index.tsx")]
+    app: [path.join(__dirname, "../src/index.js")]
   },
   output: {
-    filename: "bundle.[hash].js"
+    filename: "bundle.[hash].js",
+    path: path.join(__dirname, "../dist")
   },
   // 配置相应的插件
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      filename: "index.html",
+      template: path.join(__dirname, "../src/index.html"),
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
     })
   ]
 };

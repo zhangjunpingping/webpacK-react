@@ -6,13 +6,6 @@ const devConfig = {
   mode: "development",
   devtool: "inline-source-map",
   // 入口文件
-  entry: {
-    app: [path.join(__dirname, "../src/index.js")]
-  },
-  output: {
-    filename: "bundle.[hash].js",
-    path: path.join(__dirname, "../dist")
-  },
   module: {
     // 配置相应的规则
     rules: [
@@ -29,15 +22,20 @@ const devConfig = {
         test: /\.less$/,
         use: [
           "style-loader",
-          { loader: "css-loader", options: { importLoaders: 1 } },
-          "less-loader"
+          "css-loader",
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
         ]
       }
     ]
   },
   devServer: {
-    contentBase: "../dist",
-    port: 3000
+    port: 3000,
+    contentBase: path.join(__dirname, "../dist")
   }
 };
 module.exports = merge({
