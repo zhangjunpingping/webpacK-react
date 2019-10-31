@@ -14,11 +14,6 @@ const devConfig = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.js[x]?$/,
-        use: "babel-loader",
-        exclude: /node_modules/
-      },
-      {
         test: /\.less$/,
         use: [
           "style-loader",
@@ -34,8 +29,10 @@ const devConfig = {
     ]
   },
   devServer: {
-    port: 3000,
-    contentBase: path.join(__dirname, "../dist")
+    contentBase: path.join(__dirname, "../dist"),
+    historyApiFallback: true,
+    host: "localhost",
+    disableHostCheck: true
   }
 };
 module.exports = merge({

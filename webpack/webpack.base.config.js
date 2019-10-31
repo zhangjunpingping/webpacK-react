@@ -6,8 +6,19 @@ const commonConfig = {
     app: [path.join(__dirname, "../src/index.js")]
   },
   output: {
-    filename: "bundle.[hash].js",
-    path: path.join(__dirname, "../dist")
+    path: path.join(__dirname, "../dist"),
+    filename: "[name].[chunkhash].js",
+    chunkFilename: "[name].[chunkhash].js",
+    publicPath: "/"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js[x]?$/,
+        use: "babel-loader",
+        exclude: /node_modules/
+      }
+    ]
   },
   // 配置相应的插件
   plugins: [

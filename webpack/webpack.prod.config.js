@@ -18,11 +18,6 @@ const proConfig = {
         use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
-        test: /\.js[x]?$/,
-        use: "babel-loader",
-        exclude: /node_modules/
-      },
-      {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
