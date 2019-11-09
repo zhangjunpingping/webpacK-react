@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const commonConfig = {
   // 入口文件
+  devtool: "inline-source-map",
   entry: {
     app: [path.join(__dirname, "../src/index.js")]
   },
@@ -14,9 +15,9 @@ const commonConfig = {
   module: {
     rules: [
       {
-        test: /\.js[x]?$/,
-        use: "babel-loader",
-        exclude: /node_modules/
+        test: /\.js$/,
+        use: ["babel-loader?cacheDirectory=true"],
+        include: path.join(__dirname, "../src")
       }
     ]
   },

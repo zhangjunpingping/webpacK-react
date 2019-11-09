@@ -5,9 +5,16 @@ const merge = require("webpack-merge");
 const devConfig = {
   mode: "development",
   devtool: "inline-source-map",
-  // 入口文件
+  // 入口文件/*  */
   module: {
-    // 配置相应的规则
+    entry: {
+      app: ["react-hot-loader/patch", path.join(__dirname, "../src/index.js")]
+    },
+    output: {
+      path: path.join(__dirname, "../dist"),
+      filename: "[name].[hash].js",
+      publicPath: "/"
+    },
     rules: [
       {
         test: /\.css$/,
@@ -29,11 +36,13 @@ const devConfig = {
     ]
   },
   devServer: {
+    port: 8086,
     contentBase: path.join(__dirname, "../dist"),
     historyApiFallback: true,
     host: "localhost",
     disableHostCheck: true
   }
+  //historyApiFallback: true,在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
 };
 module.exports = merge({
   customizeArray(a, b, key) {
