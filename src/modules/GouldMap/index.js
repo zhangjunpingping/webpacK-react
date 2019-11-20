@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 class GouldMap extends Component {
   render() {
-    return <div>Map</div>;
+    return <div>Map</div>
   }
 }
 
-export default GouldMap;
+export default GouldMap

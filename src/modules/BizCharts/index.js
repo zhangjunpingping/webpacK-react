@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 class BizCharts extends Component {
   render() {
-    return <div>BizCharts</div>;
+    return <div>BizCharts</div>
   }
 }
 
-export default BizCharts;
+export default BizCharts

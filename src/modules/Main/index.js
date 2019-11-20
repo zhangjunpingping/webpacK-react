@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import { Layout } from "antd";
-import HeaderBar from "../../components/HeaderBar";
-import SideMenu from "../../components/SideMenu";
-import BizCharts from "../BizCharts";
-import Form from "../Form";
-import GouldMap from "../GouldMap";
-import Table from "../Table";
+import React, { Component } from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { Layout } from 'antd'
+import HeaderBar from '../../components/HeaderBar'
+import SideMenu from '../../components/SideMenu'
+import BizCharts from '../BizCharts'
+import Form from '../Form'
+import GouldMap from '../GouldMap'
+import Table from '../Table'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 class Main extends Component {
   render() {
@@ -20,15 +20,15 @@ class Main extends Component {
           <Content>
             <Switch>
               <Route exact path="/" component={Table} />
-              <Route path={`/biz-charts`} component={BizCharts} />
-              <Route path={`/form`} component={Form} />
-              <Route path={`/map`} component={GouldMap} />
-              <Route path={`/table`} component={Table} />
+              <Route path={'/biz-charts'} component={BizCharts} />
+              <Route path={'/form'} component={Form} />
+              <Route path={'/map'} component={GouldMap} />
+              <Route path={'/table'} component={Table} />
             </Switch>
           </Content>
         </Layout>
       </Layout>
-    );
+    )
   }
 }
-export default Main;
+export default Main
