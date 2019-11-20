@@ -7,14 +7,14 @@ const devConfig = {
   devtool: "inline-source-map",
   // 入口文件/*  */
   module: {
-    entry: {
-      app: ["react-hot-loader/patch", path.join(__dirname, "../src/index.js")]
-    },
-    output: {
-      path: path.join(__dirname, "../dist"),
-      filename: "[name].[hash].js",
-      publicPath: "/"
-    },
+    // entry: {
+    //   app: ["react-hot-loader/patch", path.join(__dirname, "../src/index.js")]
+    // },
+    // output: {
+    //   path: path.join(__dirname, "../dist"),
+    //   filename: "[name].[hash].js",
+    //   publicPath: "/"
+    // },
     rules: [
       {
         test: /\.css$/,
