@@ -8,14 +8,10 @@ export default [
   },
   {
     path: '/form',
-    title: 'from表单',
-    children: [
-      { path: '/form1', title: 'from1表单' },
-      { path: '/form2', title: 'from2表单' }
-    ]
+    title: 'form表单'
   },
   {
-    path: '/map',
+    path: '/gould-map',
     title: '地图'
   },
   {

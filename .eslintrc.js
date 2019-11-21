@@ -21,6 +21,7 @@ module.exports = {
     'react/no-multi-comp': 0, // 可以在一个文件里写多个 react component
     'react/prefer-stateless-function': 0, // 可以不使用纯函数
     'react/jsx-curly-brace-presence': 0,
+    'react/jsx-props-no-spreading': 0,
     'prefer-destructuring': ['error', { object: true, array: false }], // 不强制要求使用数组解构赋值
     'no-console': 0, //可以 console
     semi: 0, //禁止在语句末尾使用分号
@@ -30,6 +31,8 @@ module.exports = {
     'comma-dangle': ['error', 'only-multiline'], // 对象的最后一个元素后不需要逗号
     'import/extensions': ['off', 'never'], // import 的时候可以不带文件后缀
     'import/no-unresolved': 0, //import 路径
+    'import/order': 0, // 引入没有顺序要求
+    'import/prefer-default-export': 0, //import 路径
     'import/no-extraneous-dependencies': ['error', { packageDir: './' }],
     'prettier/prettier': ['error', { singleQuote: true, semi: false }]
   },

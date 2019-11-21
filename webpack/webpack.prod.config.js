@@ -1,4 +1,3 @@
-const path = require('path')
 const commonConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')

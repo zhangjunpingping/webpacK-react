@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const commonConfig = {
   // 入口文件
   devtool: 'inline-source-map',
@@ -35,7 +36,13 @@ const commonConfig = {
         useShortDoctype: true
       }
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '@': path.join(__dirname, '../src')
+    }
+  }
 }
 
 module.exports = commonConfig

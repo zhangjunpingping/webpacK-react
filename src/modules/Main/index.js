@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 import { Layout } from 'antd'
 import HeaderBar from '../../components/HeaderBar'
 import SideMenu from '../../components/SideMenu'
-import BizCharts from '../BizCharts'
-import Form from '../Form'
-import GouldMap from '../GouldMap'
-import Table from '../Table'
+import { renderRouter } from '../../routers'
+import './index.less'
 
 const { Content } = Layout
 
@@ -15,15 +13,12 @@ class Main extends Component {
     return (
       <Layout>
         <HeaderBar />
-        <Layout>
+        <Layout className="content">
           <SideMenu />
-          <Content>
+          <Content className="right-content">
             <Switch>
-              <Route exact path="/" component={Table} />
-              <Route path={'/biz-charts'} component={BizCharts} />
-              <Route path={'/form'} component={Form} />
-              <Route path={'/map'} component={GouldMap} />
-              <Route path={'/table'} component={Table} />
+              {renderRouter()}
+              <Redirect to="/" />
             </Switch>
           </Content>
         </Layout>
