@@ -40,7 +40,7 @@ class SideMenu extends Component {
 
   render() {
     return (
-      <Sider className="menu-content" width={256}>
+      <Sider className="left-content slide-style" width={256}>
         <Menu onClick={this.handleClick} style={{ width: 256 }} mode="inline">
           {this.recurMenu(menu)}
         </Menu>

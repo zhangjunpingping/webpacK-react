@@ -15,7 +15,7 @@ class Main extends Component {
         <HeaderBar />
         <Layout className="content">
           <SideMenu />
-          <Content className="right-content">
+          <Content className="right-content slide-style">
             <Switch>
               {renderRouter()}
               <Redirect to="/" />
