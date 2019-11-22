@@ -1,6 +1,7 @@
 const path = require('path')
 const commonConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const devConfig = {
   mode: 'development',
@@ -35,6 +36,13 @@ const devConfig = {
       }
     ]
   },
+  plugins: [
+    new StyleLintPlugin({
+      context: 'src',
+      files: '**/*.less',
+      syntax: 'less'
+    })
+  ],
   devServer: {
     port: 8086,
     contentBase: path.join(__dirname, '../dist'),

@@ -4,9 +4,14 @@ module.exports = {
     'stylelint-config-rational-order',
     'stylelint-config-prettier'
   ],
-  plugins: ['stylelint-order', 'stylelint-config-rational-order/plugin'],
+  plugins: [
+    'stylelint-order',
+    'stylelint-declaration-block-order',
+    'stylelint-config-rational-order/plugin'
+  ],
   rules: {
     'order/properties-order': [],
+    'plugin/declaration-block-order': [],
     'plugin/rational-order': [
       true,
       {
