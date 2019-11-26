@@ -1,7 +1,6 @@
 const path = require('path')
 const commonConfig = require('./webpack.base.config')
 const merge = require('webpack-merge')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const devConfig = {
   mode: 'development',
@@ -36,19 +35,20 @@ const devConfig = {
       }
     ]
   },
-  plugins: [
-    new StyleLintPlugin({
-      context: 'src',
-      files: '**/*.less',
-      syntax: 'less'
-    })
-  ],
+
   devServer: {
     port: 8086,
     contentBase: path.join(__dirname, '../dist'),
     historyApiFallback: true,
     host: 'localhost',
+    hot: true,
     disableHostCheck: true
+  },
+
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   }
   // historyApiFallback: true,在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
 }

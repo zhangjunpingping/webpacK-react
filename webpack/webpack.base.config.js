@@ -1,16 +1,26 @@
+const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const commonConfig = {
   // 入口文件
   devtool: 'inline-source-map',
+  // entry: {
+  //   app: [path.join(__dirname, '../src/index.js')]
+  // },
+  // output: {
+  //   path: path.join(__dirname, '../dist'),
+  //   filename: '[name].[chunkhash].js',
+  //   chunkFilename: '[name].[chunkhash].js',
+  //   publicPath: '/'
+  // },
   entry: {
-    app: [path.join(__dirname, '../src/index.js')]
+    app: ['react-hot-loader/patch', path.join(__dirname, '../src/index.js')]
   },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
   module: {
@@ -35,6 +45,14 @@ const commonConfig = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true
       }
+    }),
+
+    new webpack.HashedModuleIdsPlugin(),
+
+    new StyleLintPlugin({
+      context: 'src',
+      files: '**/*.less',
+      syntax: 'less'
     })
   ],
   resolve: {
